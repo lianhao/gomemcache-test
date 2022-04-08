@@ -71,13 +71,13 @@ func (ss *ServerList) SetServers(servers ...string) error {
 		if strings.Contains(server, "/") {
 			addr, err := net.ResolveUnixAddr("unix", server)
 			if err != nil {
-				return err
+				panic(err)
 			}
 			naddr[i] = newStaticAddr(addr)
 		} else {
 			tcpaddr, err := net.ResolveTCPAddr("tcp", server)
 			if err != nil {
-				return err
+				panic(err)
 			}
 			naddr[i] = newStaticAddr(tcpaddr)
 		}
